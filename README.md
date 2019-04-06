@@ -27,6 +27,12 @@ module.exports = {
 
 > 其他的配置项默认可以不改动
 
+然后运行:
+
+`node columnArticleList.js` 等待一段时间,生成 `PDF` 完成
+
+![](./image/geektime_run.png)
+
 ## 导出结果
 
 ![](./image/geektime_VScode_filelist.png)
