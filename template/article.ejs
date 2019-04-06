@@ -3043,13 +3043,13 @@
                         </div>
                     </div>
                     <div class="_2DmyW7ex_0 _2QmGFWqF_0">
-                        <% if (articleNeighbors.left.id) { %>
+                        <% if (articleNeighbors.left && articleNeighbors.left.id) { %>
                         <div class="_1M5b-cvc_0">
                             <div class="_3l55W_ak_0">上一篇</div>
                             <div class="_3Ov-zF0e_0"><%= articleNeighbors.left.article_title %></div>
                         </div>
                         <% } %>
-                        <% if (articleNeighbors.right.id) { %>
+                        <% if (articleNeighbors.right && articleNeighbors.right.id) { %>
                         <div class="_1M5b-cvc_0">
                             <div class="_3l55W_ak_0">下一篇</div>
                             <div class="_3Ov-zF0e_0"><%= articleNeighbors.right.article_title %></div>
