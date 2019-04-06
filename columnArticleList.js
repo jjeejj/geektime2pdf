@@ -22,8 +22,13 @@ const generaterPdf = require('./generaterPdf.js');
                 'id': articalId,
                 'include_neighbors': true
             });
+            if (res.body && res.body.error && res.body.error.code){
+                console.log('error msg', res.body.error.msg);
+                throw new Error(res.body.error.msg);
+            };
             console.log(res.body.data.article_title);
             let columnArticle = res.body.data;
+
             let articleInfo = {
                 articleTitle: columnArticle.article_title, // 文章标题
                 articalUrl: config.columnBaseUrl + articalId, // 文章地址
@@ -39,7 +44,7 @@ const generaterPdf = require('./generaterPdf.js');
             //生成PDF 
             await generaterPdf(articleInfo,
                 columnArticle.article_title + '.pdf',
-                path.resolve(__dirname, config.columnName)
+                path.resolve(__dirname, 'geektime_' + config.columnName)
             );
             // 判断是否还有下一篇文章
             let neighborRight = columnArticle.neighbors.right;
@@ -54,6 +59,6 @@ const generaterPdf = require('./generaterPdf.js');
     };
     await getNextColumnArticleUrl(firstArticalId);
     console.log('专栏文章链接获取完成');
-    utils.writeToFile(`${config.columnName}`, JSON.stringify(columnArticleUrlList,null,4));
+    utils.writeToFile(`geektime_${config.columnName}`, JSON.stringify(columnArticleUrlList,null,4));
     return columnArticleUrlList;
 })(config.firstArticalId);
