@@ -33,7 +33,9 @@ module.exports = {
 
 ### 运行
 
-`node columnArticleList.js` 等待一段时间,生成 `PDF` 完成
+1. `git clone git@github.com:jjeejj/geektime2pdf.git` 在本地克隆下来
+2. 然后执行 `npm i` 安装依赖
+3. 运行主程序 `node columnArticleList.js` 等待一段时间,生成 `PDF` 完成
 
 ![](./image/geektime_run.png)
 
