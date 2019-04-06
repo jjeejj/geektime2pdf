@@ -1,13 +1,13 @@
 {
   "name": "geektime2pdf",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "极客时间专栏文章 转为 PDF",
+  "main": "columnArticleList.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "jjeejj",
   "license": "ISC",
   "dependencies": {
     "ejs": "^2.6.1",
