@@ -20,8 +20,11 @@ module.exports = {
 ```
 
 > 会自动生成一个`geektime_{{columnName}}` 的文件夹来保存导出的所有`pdf`文件, `columnName` 为上面配置的
+
 > `firstArticalId` 这个参数最好配置专栏第一篇文章的 `ID` ，这个可以获取专栏的所有的文章,若不是第一篇文章的`ID` 则获取的是该文件以及之后的文章
+
 > `cookie` 你在网页版登录参数的`cookie`信息
+
 > 其他的配置项默认可以不改动
 
 ## 导出结果
