@@ -2,3 +2,5 @@ node_modules
 .vscode
 geektime_*/**
 config.js
+.nyc_output
+coverage
