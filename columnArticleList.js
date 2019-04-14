@@ -4,7 +4,11 @@ const superagent = require('superagent');
 const utils = require('./utils');
 const path = require('path');
 const generaterPdf = require('./generaterPdf.js');
+const downloadAudio = require('./downloadAudio.js');
 
+/**
+ * 执行方法
+ */
 (async function getColumnArticleList (firstArticalId){
     await utils.createDir('geektime_'+config.columnName);
     console.log('专栏文章链接开始获取');
@@ -46,6 +50,14 @@ const generaterPdf = require('./generaterPdf.js');
                 columnArticle.article_title + '.pdf',
                 path.resolve(__dirname, 'geektime_' + config.columnName)
             );
+            // 是否下载音频
+            if (config.isdownloadVideo) {
+                await downloadAudio(
+                    columnArticle.audio_download_url,
+                    columnArticle.article_title + '.mp3',
+                    path.resolve(__dirname, 'geektime_' + config.columnName)
+                );
+            };
             // 判断是否还有下一篇文章
             let neighborRight = columnArticle.neighbors.right;
             if (neighborRight && neighborRight.id){
