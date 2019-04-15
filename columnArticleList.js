@@ -45,16 +45,18 @@ const downloadAudio = require('./downloadAudio.js');
                 audioTitle: columnArticle.audio_title
             };
             columnArticleUrlList.push(articleInfo);
+            // 替换文章名称的 / 线， 解决路径被分割的问题
+            let useArticleTtle = columnArticle.article_title.replace(/\//g, '-');
             //生成PDF 
             await generaterPdf(articleInfo,
-                columnArticle.article_title + '.pdf',
+                useArticleTtle + '.pdf',
                 path.resolve(__dirname, 'geektime_' + config.columnName)
             );
             // 是否下载音频
             if (config.isdownloadVideo) {
                 await downloadAudio(
                     columnArticle.audio_download_url,
-                    columnArticle.article_title + '.mp3',
+                    useArticleTtle + '.mp3',
                     path.resolve(__dirname, 'geektime_' + config.columnName)
                 );
             };
