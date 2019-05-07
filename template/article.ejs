@@ -3056,6 +3056,33 @@
                         </div>
                         <% } %>
                     </div>
+                    <div class="_1qhD3bdE_0 _2QmGFWqF_0">
+                        <h2><span>精选留言</span><span class="_2FC_cD1O_0"><%- commentsTotal %></span></h2> 
+                        <ul>
+                            <%for(let i=0;i<commentsArr.length;i++){%>
+                            <li class="reJj6Thl_0">
+                                <img src="<%- commentsArr[i].user_header %>" class="_2273kGdT_0"/> 
+                                <div class="_2CG0SquK_0">
+                                    <div class="_304R4gla_0">
+                                        <div>
+                                            <div class="_18Dng5rT_0">
+                                                <span><%- commentsArr[i].user_name %></span>
+                                            </div> 
+                                            <div class="_1H1Z49Dr_0"><%- commentsArr[i].comment_ctime %></div>
+                                        </div>
+                                    </div> 
+                                    <div class="_3M6kV3zb_0 _3D2NkqD6_0"><%- commentsArr[i].comment_content %></div>
+                                    <% if(commentsArr[i].replies) { %>
+                                        <% for(let j=0;j<commentsArr[i].replies.length;j++){ %>
+                                        <div class="_2xNIY4NG_0">
+                                            <p class="_33BLbmw4_0"><%- commentsArr[i].replies[j].user_name %> <%- commentsArr[i].replies[j].content %></p>
+                                        </div>
+                                        <% } %>
+                                    <% } %>
+                                </div>
+                            </li>
+                            <%}%>
+                        </ul>
                 </div>
             </div>
         </div>

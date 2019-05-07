@@ -4,3 +4,4 @@ geektime_*/**
 config.js
 .nyc_output
 coverage
+quest.md

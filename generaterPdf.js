@@ -17,6 +17,7 @@ const config = require('./config.js');
  */
 async function generaterPdf (data, filename = 'example.pdf', dirname = __dirname, options = {}) {
     console.log('generater pdf start');
+    // console.log('data', JSON.stringify(data));
     let browser, page;
     try {
         browser = await puppeteer.launch({

@@ -5,6 +5,7 @@ const utils = require('./utils');
 const path = require('path');
 const generaterPdf = require('./generaterPdf.js');
 const downloadAudio = require('./downloadAudio.js');
+const downloadComment = require('./downloadComment.js');
 
 /**
  * 执行方法
@@ -45,6 +46,16 @@ const downloadAudio = require('./downloadAudio.js');
                 audioTitle: columnArticle.audio_title
             };
             columnArticleUrlList.push(articleInfo);
+            articleInfo.commentsTotal = 0;
+            articleInfo.commentsArr = [];
+            // 是否导出评论
+            if (config.isComment) {
+                let {commentsTotal, commentsArr} = await downloadComment(
+                    config.columnBaseUrl + articalId,
+                    articalId);
+                articleInfo.commentsTotal = commentsTotal;
+                articleInfo.commentsArr = commentsArr;
+            };
             // 替换文章名称的 / 线， 解决路径被分割的问题
             let useArticleTtle = columnArticle.article_title.replace(/\//g, '-');
             //生成PDF 
