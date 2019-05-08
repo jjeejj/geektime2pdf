@@ -14,6 +14,7 @@
  */
 module.exports = {
     url: 'https://time.geekbang.org/serv/v1/article', // 该配置项不需要改动
+    commentUrl: 'https://time.geekbang.org/serv/v1/comments', // 该配置项不需要改动
     columnBaseUrl: 'https://time.geekbang.org/column/article/', // 该配置项不需要改动
     columnName: '玩转VScode', // 专栏名称
     firstArticalId: 18053, //专栏第一篇文章的ID
@@ -23,7 +24,7 @@ module.exports = {
 };
 ```
 
-* 上面的配置项**前两项是不需要修改**的, 只需要修改后面的专栏信息
+* 上面的配置项**前三项是不需要修改**的, 只需要修改后面的专栏信息
 
 * 会自动生成一个`geektime_{{columnName}}` 的文件夹来保存导出的所有`pdf`文件, `columnName` 为上面配置的
 
