@@ -64,7 +64,7 @@ const downloadComment = require('./downloadComment.js');
                 path.resolve(__dirname, 'geektime_' + config.columnName)
             );
             // 是否下载音频
-            if (config.isdownloadVideo) {
+            if (config.isdownloadVideo && columnArticle.audio_download_url) {
                 await downloadAudio(
                     columnArticle.audio_download_url,
                     useArticleTtle + '.mp3',
