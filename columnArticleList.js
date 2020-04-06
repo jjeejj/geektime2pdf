@@ -56,8 +56,8 @@ const downloadComment = require('./downloadComment.js');
                 articleInfo.commentsTotal = commentsTotal;
                 articleInfo.commentsArr = commentsArr;
             };
-            // 替换文章名称的 / 线， 解决路径被分割的问题
-            let useArticleTtle = columnArticle.article_title.replace(/\//g, '-');
+            // 替换非法文件名
+            let useArticleTtle = columnArticle.article_title.replace(/[\/:*?"<>|]/g, '-');
             //生成PDF 
             await generaterPdf(articleInfo,
                 useArticleTtle + '.pdf',
