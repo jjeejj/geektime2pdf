@@ -18,6 +18,7 @@ module.exports = {
     columnBaseUrl: 'https://time.geekbang.org/column/article/', // 该配置项不需要改动
     columnName: '玩转VScode', // 专栏名称
     firstArticalId: 18053, //专栏第一篇文章的ID
+    articalIds: [201700,202772,204472,205784],  //指定下载的articalId, 优先级更高, 配置后firstArticalId配置将失效
     isdownloadVideo: false, // 是否下载音频
     isComment: false, // 是否导出评论
     cookie: 'cookie'
@@ -29,6 +30,8 @@ module.exports = {
 * 会自动生成一个`geektime_{{columnName}}` 的文件夹来保存导出的所有`pdf`文件, `columnName` 为上面配置的
 
 * `firstArticalId` 这个参数最好配置专栏第一篇文章的 `ID` ，这个可以获取专栏的所有的文章,若不是第一篇文章的`ID` 则获取的是该文章以及之后的文章
+
+* `articalIds` 这个参数配置为需要获取的文章的所有的 `ID`
 
 * `cookie` 你在网页版登录后返回的`cookie`信息
 
