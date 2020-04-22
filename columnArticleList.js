@@ -21,9 +21,9 @@ const downloadComment = require('./downloadComment.js');
     if (config.articalIds && config.articalIds.length > 0) {
         type = 1;
         firstArticalId = config.articalIds[0];
-        console.log('通过firstArticalId配置进行文章获取');
-    } else {
         console.log('通过articalIds配置进行文章获取');
+    } else {
+        console.log('通过firstArticalId配置进行文章获取');
     }
 
     let articalId = firstArticalId;
@@ -88,7 +88,7 @@ const downloadComment = require('./downloadComment.js');
             // 判断是否还有下一篇文章
             let nextId;
             if(type == 1) {
-                nextId = config.articalIds.length >= assignIndex ? config.articalIds[assignIndex] : undefined;
+                nextId = config.articalIds.length > assignIndex ? config.articalIds[assignIndex] : undefined;
                 assignIndex++;
             } else {
                 nextId = columnArticle.neighbors.right ? columnArticle.neighbors.right : undefined;
