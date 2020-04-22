@@ -48,4 +48,4 @@ module.exports = {
 
 ## 问题汇总
 
-* `puppeteer` 下载失败问题，参考 [stackoverflow](stackoverflow.com/questions/53997175/puppeteer-error-chromium-revision-is-not-downloaded)
+* `puppeteer` 下载失败问题，参考 [stackoverflow](https://stackoverflow.com/questions/53997175/puppeteer-error-chromium-revision-is-not-downloaded)
