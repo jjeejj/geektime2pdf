@@ -35,8 +35,8 @@ async function generaterPdf (data, filename = 'example.pdf', dirname = __dirname
         await browser.close();
     }catch (err){
         console.log('generater pdf err', err);
-        await page ? page.close(): '';
-        await browser ? browser.close(): '';
+        page ? await page.close(): '';
+        browser ? await browser.close(): '';
     };
 };
 
