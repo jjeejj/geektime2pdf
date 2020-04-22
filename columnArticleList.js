@@ -11,10 +11,23 @@ const downloadComment = require('./downloadComment.js');
  * 执行方法
  */
 (async function getColumnArticleList (firstArticalId){
-    await utils.createDir('geektime_'+config.columnName);
+    await utils.createDir('geektime_' + config.columnName);
     console.log('专栏文章链接开始获取');
     let columnArticleUrlList = [];
+    let type = 0;
+
+    //指定id下载
+    let assignIndex = 1;
+    if (config.articalIds && config.articalIds.length > 0) {
+        type = 1;
+        firstArticalId = config.articalIds[0];
+        console.log('通过articalIds配置进行文章获取');
+    } else {
+        console.log('通过firstArticalId配置进行文章获取');
+    }
+
     let articalId = firstArticalId;
+
     async function getNextColumnArticleUrl (){
         try {
             let res = await superagent.post(config.url)
@@ -56,8 +69,8 @@ const downloadComment = require('./downloadComment.js');
                 articleInfo.commentsTotal = commentsTotal;
                 articleInfo.commentsArr = commentsArr;
             };
-            // 替换文章名称的 / 线， 解决路径被分割的问题
-            let useArticleTtle = columnArticle.article_title.replace(/\//g, '-');
+            // 替换非法文件名
+            let useArticleTtle = columnArticle.article_title.replace(/[\/:*?"<>|]/g, '-');
             //生成PDF 
             await generaterPdf(articleInfo,
                 useArticleTtle + '.pdf',
@@ -71,10 +84,18 @@ const downloadComment = require('./downloadComment.js');
                     path.resolve(__dirname, 'geektime_' + config.columnName)
                 );
             };
+
             // 判断是否还有下一篇文章
-            let neighborRight = columnArticle.neighbors.right;
-            if (neighborRight && neighborRight.id){
-                articalId = neighborRight.id;
+            let nextId;
+            if(type == 1) {
+                nextId = config.articalIds.length > assignIndex ? config.articalIds[assignIndex] : undefined;
+                assignIndex++;
+            } else {
+                nextId = columnArticle.neighbors.right ? columnArticle.neighbors.right : undefined;
+            }
+            
+            if (nextId){
+                articalId = nextId;
                 await utils.sleep(1.5);
                 await getNextColumnArticleUrl();
             };
@@ -82,7 +103,7 @@ const downloadComment = require('./downloadComment.js');
             console.log(`访问 地址 ${config.columnBaseUrl + articalId} err`, err.message);
         };
     };
-    await getNextColumnArticleUrl(firstArticalId);
+    await getNextColumnArticleUrl();
     console.log('专栏文章链接获取完成');
     utils.writeToFile(`geektime_${config.columnName}`, JSON.stringify(columnArticleUrlList,null,4));
     return columnArticleUrlList;
