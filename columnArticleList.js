@@ -14,18 +14,17 @@ const downloadComment = require('./downloadComment.js');
     await utils.createDir('geektime_' + config.columnName);
     console.log('专栏文章链接开始获取');
     let columnArticleUrlList = [];
-    let type = 0;
-
+    // 下载类型， 1: 指定文章ID进行下载， 0: 通过 firstArticalId进行下载
+    let type = 0, nextId, neighborRight;
     //指定id下载
     let assignIndex = 1;
     if (config.articalIds && config.articalIds.length > 0) {
         type = 1;
         firstArticalId = config.articalIds[0];
-        console.log('通过articalIds配置进行文章获取');
+        console.log('通过IDarticalIds配置进行文章获取', config.articalIds.length);
     } else {
-        console.log('通过firstArticalId配置进行文章获取');
-    }
-
+        console.log('通过firstArticalId配置进行文章获取', firstArticalId);
+    };
     let articalId = firstArticalId;
 
     async function getNextColumnArticleUrl (){
@@ -85,15 +84,14 @@ const downloadComment = require('./downloadComment.js');
                 );
             };
 
-            // 判断是否还有下一篇文章
-            let nextId;
             if(type == 1) {
                 nextId = config.articalIds.length > assignIndex ? config.articalIds[assignIndex] : undefined;
                 assignIndex++;
             } else {
-                nextId = columnArticle.neighbors.right ? columnArticle.neighbors.right : undefined;
-            }
-            
+                neighborRight = columnArticle.neighbors.right;
+                nextId = (neighborRight && neighborRight.id) ? neighborRight.id : undefined;
+            };
+            // 判断是否还有下一篇文章
             if (nextId){
                 articalId = nextId;
                 await utils.sleep(1.5);
