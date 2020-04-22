@@ -21,7 +21,7 @@ const downloadComment = require('./downloadComment.js');
     if (config.articalIds && config.articalIds.length > 0) {
         type = 1;
         firstArticalId = config.articalIds[0];
-        console.log('通过IDarticalIds配置进行文章获取', config.articalIds.length);
+        console.log('通过articalIds配置进行文章获取', config.articalIds.length);
     } else {
         console.log('通过firstArticalId配置进行文章获取', firstArticalId);
     };
