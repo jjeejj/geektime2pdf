@@ -12,6 +12,6 @@
   "dependencies": {
     "ejs": "^2.6.1",
     "puppeteer": "^1.14.0",
-    "superagent": "^5.0.2"
+    "superagent": "^5.3.1"
   }
 }
